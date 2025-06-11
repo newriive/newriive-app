@@ -24,6 +24,11 @@ Thank you for your interest in contributing! Here are some guidelines to help yo
 - Use the issue template if available.
 - Provide as much detail as possible (steps to reproduce, environment, etc.).
 
+## Continuous Integration
+- Pull requests are automatically built and linted via the `build-on-pr.yml` workflow.
+- Merges to `main` are built, linted, and have artifacts uploaded via the `build-on-main.yml` workflow.
+- Both use a reusable workflow for consistency.
+
 ## Copilot Prompts & AI Assistance
 - For AI-assisted coding, see `COPILOT_INSTRUCTIONS.md` in the project root. It contains sample Copilot prompts and setup tips for this codebase.
 

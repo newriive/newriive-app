@@ -101,9 +101,14 @@ The initial UI is a simple welcome page styled with Tailwind CSS. Feature compon
 
 ## Continuous Integration
 
-This project uses GitHub Actions to automatically build and lint the app on every push and pull request. See `.github/workflows/build.yml` for details.
+This project uses GitHub Actions for CI. There are two workflows:
+- **build-on-pr.yml**: Runs build and lint on every pull request.
+- **build-on-main.yml**: Runs build and lint on every merge/push to `main` and uploads build artifacts.
 
-[![Build Status](https://github.com/newriive/newriive-app/actions/workflows/build.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build.yml)
+Both use a [reusable workflow](.github/workflows/build-reusable.yml) for consistency.
+
+[![Build on PR](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml)
+[![Build on Main](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml)
 
 ---
 

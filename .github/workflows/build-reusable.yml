@@ -1,8 +1,12 @@
-name: Build Next.js App
+name: Build (Reusable)
 
 on:
-  push:
-  pull_request:
+  workflow_call:
+    inputs:
+      upload_artifact:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -31,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Upload production-ready build artifacts
-        if: success()
+        if: ${{ inputs.upload_artifact }}
         uses: actions/upload-artifact@v4
         with:
           name: nextjs-build
