@@ -99,6 +99,14 @@ The initial UI is a simple welcome page styled with Tailwind CSS. Feature compon
 
 ---
 
+## Continuous Integration
+
+This project uses GitHub Actions to automatically build and lint the app on every push and pull request. See `.github/workflows/build.yml` for details.
+
+[![Build Status](https://github.com/newriive/newriive-app/actions/workflows/build.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build.yml)
+
+---
+
 ## 📄 License
 
 MIT — see [LICENSE](./LICENSE)
