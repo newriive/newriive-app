@@ -99,6 +99,19 @@ The initial UI is a simple welcome page styled with Tailwind CSS. Feature compon
 
 ---
 
+## Continuous Integration
+
+This project uses GitHub Actions for CI. There are two workflows:
+- **build-on-pr.yml**: Runs build and lint on every pull request.
+- **build-on-main.yml**: Runs build and lint on every merge/push to `main` and uploads build artifacts.
+
+Both use a [reusable workflow](.github/workflows/build-reusable.yml) for consistency.
+
+[![Build on PR](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml)
+[![Build on Main](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml)
+
+---
+
 ## 📄 License
 
 MIT — see [LICENSE](./LICENSE)

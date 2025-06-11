@@ -1,0 +1,10 @@
+name: Build on PR
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-reusable.yml
+    with:
+      upload_artifact: false
