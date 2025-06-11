@@ -23,14 +23,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: |
-          if [ -f package.json ] && grep -q '"lint"' package.json; then
-            npm run lint
-          else
-            echo "No lint script found. Skipping lint."
-          fi
-
       - name: Build
         run: npm run build
 

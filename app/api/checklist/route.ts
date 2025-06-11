@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { saveChecklistItem } from '@/lib/dynamodb';
+import { saveChecklistItem } from '@lib/dynamodb';
 
 export async function POST(req: NextRequest) {
   const { userId, itemId, item } = await req.json();
