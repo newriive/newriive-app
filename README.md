@@ -23,17 +23,18 @@ This repo contains the dynamic app: user authentication, dashboards, and future 
 ```bash
 newriive-app/
 ├── app/                  # App Router pages and routes
-├── components/           # UI components
+# ├── components/           # UI components (to be added as features are built)
 ├── lib/                  # AWS SDK logic (auth, db)
 ├── styles/               # Tailwind CSS styles
 ├── public/               # Static assets (favicon, OG)
 ├── .github/workflows/    # CI/CD (optional)
-├── .env.local.example    # Environment variable template
 ├── next.config.js
 ├── tailwind.config.js
 ├── tsconfig.json
 └── README.md
 ```
+
+> **Note:** Tailwind CSS is pre-installed and configured. Global styles are imported in `app/layout.tsx` via `import '../styles/globals.css'`.
 
 ---
 
@@ -71,6 +72,8 @@ DYNAMODB_TABLE_CHECKLIST=Checklist
 ```bash
 npm run dev
 ```
+
+The initial UI is a simple welcome page styled with Tailwind CSS. Feature components (auth, dashboard, checklist, etc.) will be added as development progresses.
 
 ---
 
