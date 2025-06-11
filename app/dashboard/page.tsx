@@ -32,9 +32,9 @@ export default function DashboardPage() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <main className="max-w-md mx-auto py-10 space-y-6">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p>{message}</p>
+    <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body">
+      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">Dashboard</h1>
+      <p className="mb-4">{message}</p>
       <LogoutButton />
     </main>
   )

@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap');
+
+@layer base {
+  body {
+    @apply font-body bg-brand-white text-brand-dark;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-heading text-brand-indigo;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-4 py-2 bg-brand-indigo text-white font-semibold rounded-md hover:bg-[#2f2f8c] transition;
+  }
+
+  .btn-accent {
+    @apply inline-block px-4 py-2 bg-brand-gold text-white font-semibold rounded-md hover:bg-yellow-500 transition;
+  }
+
+  .btn-outline {
+    @apply inline-block px-4 py-2 border border-brand-teal text-brand-teal font-semibold rounded-md hover:bg-brand-teal hover:text-white transition;
+  }
+
+  .card {
+    @apply bg-white border border-brand-gray shadow-md p-6 rounded-xl;
+  }
+
+  .hero {
+    @apply text-center bg-brand-gray py-20 px-6;
+  }
+
+  .hero-title {
+    @apply text-4xl font-heading text-brand-indigo;
+  }
+
+  .hero-subtitle {
+    @apply mt-4 text-lg font-body text-brand-dark;
+  }
+}
