@@ -7,6 +7,7 @@ import LogoutButton from './LogoutButton'
 import LoginPage from '../app/login/page'
 import SignupPage from '../app/signup/page'
 import ConfirmPage from '../app/confirm/page'
+import ForgotPasswordPage from '../app/forgot-password/page'
 
 const navItems = [
 	{ href: '/', label: 'Home' },
@@ -23,6 +24,7 @@ export default function Navbar() {
 	const [showLoginModal, setShowLoginModal] = useState(false)
 	const [showSignupModal, setShowSignupModal] = useState(false)
 	const [showConfirmModal, setShowConfirmModal] = useState(false)
+	const [showForgotModal, setShowForgotModal] = useState(false)
 
 	useEffect(() => {
 		getCurrentUserSession()
@@ -111,6 +113,12 @@ export default function Navbar() {
 					<div className="bg-white rounded-xl shadow-lg p-8 min-w-[320px] max-w-sm relative">
 						<button onClick={() => setShowLoginModal(false)} className="absolute top-2 right-2 text-brand-indigo hover:text-brand-gold text-xl">×</button>
 						<LoginPage />
+						<button
+							onClick={() => { setShowLoginModal(false); setShowForgotModal(true) }}
+							className="mt-4 text-sm text-brand-indigo hover:text-brand-gold underline"
+						>
+							Forgot password?
+						</button>
 					</div>
 				</div>
 			)}
@@ -127,6 +135,14 @@ export default function Navbar() {
 					<div className="bg-white rounded-xl shadow-lg p-8 min-w-[320px] max-w-sm relative">
 						<button onClick={() => setShowConfirmModal(false)} className="absolute top-2 right-2 text-brand-indigo hover:text-brand-gold text-xl">×</button>
 						<ConfirmPage />
+					</div>
+				</div>
+			)}
+			{showForgotModal && (
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+					<div className="bg-white rounded-xl shadow-lg p-8 min-w-[320px] max-w-sm relative">
+						<button onClick={() => setShowForgotModal(false)} className="absolute top-2 right-2 text-brand-indigo hover:text-brand-gold text-xl">×</button>
+						<ForgotPasswordPage />
 					</div>
 				</div>
 			)}
