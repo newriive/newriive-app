@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { getCurrentUserSession } from '@lib/session'
+import LogoutButton from './LogoutButton'
 
 const navItems = [
 	{ href: '/', label: 'Home' },
@@ -53,6 +54,11 @@ export default function Navbar() {
 					</span>
 				</Link>
 			))}
+			{isLoggedIn && (
+				<div className="flex-1 flex justify-end items-center mb-2 mr-4">
+					<LogoutButton />
+				</div>
+			)}
 		</nav>
 	)
 }
