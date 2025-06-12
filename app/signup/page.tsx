@@ -39,6 +39,8 @@ export default function SignupPage() {
         locale,
       })
       setMessage('✅ Check your email for a confirmation code.')
+      // Dispatch custom event to close signup and show confirm modal
+      window.dispatchEvent(new CustomEvent('show-confirm-modal', { detail: { closeSignup: true } }))
     } catch (err: any) {
       setMessage(`❌ ${err.message}`)
     }
