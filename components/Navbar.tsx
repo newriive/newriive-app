@@ -10,6 +10,7 @@ const navItems = [
 	{ href: '/confirm', label: 'Confirm' },
 	{ href: '/login', label: 'Login' },
 	{ href: '/dashboard', label: 'Dashboard' },
+	{ href: '/profile', label: 'Profile' }, // Add profile link
 ]
 
 export default function Navbar() {
@@ -27,8 +28,8 @@ export default function Navbar() {
 			// Hide home, login, signup, confirm when logged in
 			return !['/', '/login', '/signup', '/confirm'].includes(item.href)
 		} else {
-			// Hide dashboard when logged out
-			return item.href !== '/dashboard'
+			// Hide dashboard and profile when logged out
+			return !['/dashboard', '/profile'].includes(item.href)
 		}
 	})
 

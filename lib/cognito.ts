@@ -12,10 +12,54 @@ const poolData = {
 
 const userPool = new CognitoUserPool(poolData);
 
-export function signUpUser(email: string, password: string): Promise<any> {
+export function signUpUser(
+  email: string,
+  password: string,
+  attributes: {
+    phone_number?: string;
+    name?: string;
+    given_name?: string;
+    family_name?: string;
+    birthdate?: string;
+    locale?: string;
+  } = {}
+): Promise<any> {
   const attributeList = [
     new CognitoUserAttribute({ Name: "email", Value: email }),
   ];
+  if (attributes.phone_number)
+    attributeList.push(
+      new CognitoUserAttribute({
+        Name: "phone_number",
+        Value: attributes.phone_number,
+      })
+    );
+  if (attributes.name)
+    attributeList.push(
+      new CognitoUserAttribute({ Name: "name", Value: attributes.name })
+    );
+  if (attributes.given_name)
+    attributeList.push(
+      new CognitoUserAttribute({
+        Name: "given_name",
+        Value: attributes.given_name,
+      })
+    );
+  if (attributes.family_name)
+    attributeList.push(
+      new CognitoUserAttribute({
+        Name: "family_name",
+        Value: attributes.family_name,
+      })
+    );
+  if (attributes.birthdate)
+    attributeList.push(
+      new CognitoUserAttribute({ Name: "birthdate", Value: attributes.birthdate })
+    );
+  if (attributes.locale)
+    attributeList.push(
+      new CognitoUserAttribute({ Name: "locale", Value: attributes.locale })
+    );
 
   return new Promise((resolve, reject) => {
     userPool.signUp(email, password, attributeList, [], (err, result) => {
