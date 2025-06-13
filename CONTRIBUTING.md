@@ -7,20 +7,22 @@ Thank you for your interest in contributing! Here are some guidelines to help yo
 - Fork the repository and clone your fork.
 - Create a new branch for your feature or bugfix: `git checkout -b my-feature`
 - Install dependencies: `npm install`
+- Copy environment variables: `cp .env.example .env.local` and update as needed.
 - Make your changes and commit them with clear messages.
 - Push your branch and open a Pull Request (PR) against `main`.
 
 ## Code Style
 
 - Use 2 spaces for indentation (see `.editorconfig`).
-- Use Prettier and ESLint if configured.
+- Use Prettier and ESLint (configured in the project).
 - Write clear, concise comments for complex code.
+- Place reusable UI in the `components/` directory.
 
 ## Pull Requests
 
 - Fill out the PR template.
 - Ensure your branch is up to date with `main` before opening a PR.
-- Add tests for new features or bug fixes.
+- Add or update tests for new features or bug fixes.
 - Make sure all tests and lints pass before submitting.
 
 ## Reporting Issues
@@ -32,7 +34,7 @@ Thank you for your interest in contributing! Here are some guidelines to help yo
 
 - Pull requests are automatically built and linted via the `build-on-pr.yml` workflow.
 - Merges to `main` are built, linted, and have artifacts uploaded via the `build-on-main.yml` workflow.
-- Both use a reusable workflow for consistency.
+- Both use a reusable workflow for consistency (see `.github/workflows/`).
 
 ## Copilot Prompts & AI Assistance
 
