@@ -3,6 +3,7 @@
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import { useEffect, useState } from 'react'
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { getCurrentUser } from '@lib/auth/cognito'
 
 const poolData = {
   UserPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
@@ -27,7 +28,7 @@ export default function ProfilePage() {
   const [saveError, setSaveError] = useState('')
 
   useEffect(() => {
-    const user = userPool.getCurrentUser()
+    const user = getCurrentUser()
     if (!user) {
       setError('Not logged in')
       setLoading(false)
@@ -44,7 +45,9 @@ export default function ProfilePage() {
         else {
           setAttributes(attrs)
           // Set form values from attributes
-          const attrObj = Object.fromEntries(attrs.map(attr => [attr.getName(), attr.getValue()]))
+          const attrObj = Object.fromEntries(
+            attrs.map((attr) => [attr.getName(), attr.getValue()]),
+          )
           setForm({
             given_name: attrObj.given_name || '',
             family_name: attrObj.family_name || '',
@@ -59,8 +62,18 @@ export default function ProfilePage() {
     })
   }, [])
 
-  if (loading) return <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body max-w-md mx-auto"><p>Loading...</p></main>
-  if (error) return <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body max-w-md mx-auto"><p className="text-red-600">{error}</p></main>
+  if (loading)
+    return (
+      <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body max-w-md mx-auto">
+        <p>Loading...</p>
+      </main>
+    )
+  if (error)
+    return (
+      <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body max-w-md mx-auto">
+        <p className="text-red-600">{error}</p>
+      </main>
+    )
 
   // Only show these attributes, in this order
   const displayOrder = [
@@ -72,7 +85,9 @@ export default function ProfilePage() {
     { key: 'birthdate', label: 'Birthdate' },
     { key: 'locale', label: 'Locale' },
   ]
-  const attrMap = Object.fromEntries(attributes.map(attr => [attr.getName(), attr.getValue()]))
+  const attrMap = Object.fromEntries(
+    attributes.map((attr) => [attr.getName(), attr.getValue()]),
+  )
 
   const handleEdit = () => {
     setEditMode(true)
@@ -90,9 +105,11 @@ export default function ProfilePage() {
       locale: attrMap.locale || '',
     })
   }
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target
-    setForm(f => {
+    setForm((f) => {
       // If editing given_name or family_name, update name as well
       if (name === 'given_name' || name === 'family_name') {
         const newGiven = name === 'given_name' ? value : f.given_name
@@ -109,7 +126,7 @@ export default function ProfilePage() {
   const handleSave = async () => {
     setSaving(true)
     setSaveError('')
-    const user = userPool.getCurrentUser()
+    const user = getCurrentUser()
     if (!user) {
       setSaveError('Not logged in')
       setSaving(false)
@@ -122,10 +139,19 @@ export default function ProfilePage() {
         return
       }
       const attrs = [
-        new CognitoUserAttribute({ Name: 'given_name', Value: form.given_name }),
-        new CognitoUserAttribute({ Name: 'family_name', Value: form.family_name }),
+        new CognitoUserAttribute({
+          Name: 'given_name',
+          Value: form.given_name,
+        }),
+        new CognitoUserAttribute({
+          Name: 'family_name',
+          Value: form.family_name,
+        }),
         new CognitoUserAttribute({ Name: 'name', Value: form.name }),
-        new CognitoUserAttribute({ Name: 'phone_number', Value: form.phone_number }),
+        new CognitoUserAttribute({
+          Name: 'phone_number',
+          Value: form.phone_number,
+        }),
         new CognitoUserAttribute({ Name: 'birthdate', Value: form.birthdate }),
         new CognitoUserAttribute({ Name: 'locale', Value: form.locale }),
       ]
@@ -155,57 +181,79 @@ export default function ProfilePage() {
           Edit
         </button>
       )}
-      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">Your Profile</h1>
+      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">
+        Your Profile
+      </h1>
       <ul className="space-y-2">
         {displayOrder.map(({ key, label }) =>
           !editMode ? (
             attrMap[key] ? (
-              <li key={key} className="flex justify-between border-b border-brand-gray py-2">
+              <li
+                key={key}
+                className="flex justify-between border-b border-brand-gray py-2"
+              >
                 <span className="font-semibold text-brand-dark">{label}</span>
-                <span className="text-brand-indigo break-all">{attrMap[key]}</span>
+                <span className="text-brand-indigo break-all">
+                  {attrMap[key]}
+                </span>
               </li>
             ) : null
+          ) : key === 'email' ? (
+            <li
+              key={key}
+              className="flex justify-between border-b border-brand-gray py-2 items-center"
+            >
+              <span className="font-semibold text-brand-dark w-1/2">
+                {label}
+              </span>
+              <span className="text-brand-indigo break-all w-1/2 text-right">
+                {attrMap[key]}
+              </span>
+            </li>
+          ) : key === 'locale' ? (
+            <li
+              key={key}
+              className="flex justify-between border-b border-brand-gray py-2 items-center"
+            >
+              <span className="font-semibold text-brand-dark w-1/2">
+                {label}
+              </span>
+              <select
+                name="locale"
+                value={form.locale}
+                onChange={handleChange}
+                className="w-1/2 border border-brand-gray-light rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-indigo text-right"
+              >
+                <option value="">Select Locale</option>
+                <option value="en-US">English (United States)</option>
+                <option value="en-GB">English (United Kingdom)</option>
+                <option value="fr-FR">French (France)</option>
+                <option value="es-ES">Spanish (Spain)</option>
+                <option value="de-DE">German (Germany)</option>
+                <option value="it-IT">Italian (Italy)</option>
+                <option value="pt-PT">Portuguese (Portugal)</option>
+                <option value="zh-CN">Chinese (Simplified)</option>
+                <option value="ja-JP">Japanese</option>
+                <option value="ko-KR">Korean</option>
+              </select>
+            </li>
           ) : (
-            key === 'email' ? (
-              <li key={key} className="flex justify-between border-b border-brand-gray py-2 items-center">
-                <span className="font-semibold text-brand-dark w-1/2">{label}</span>
-                <span className="text-brand-indigo break-all w-1/2 text-right">{attrMap[key]}</span>
-              </li>
-            ) : key === 'locale' ? (
-              <li key={key} className="flex justify-between border-b border-brand-gray py-2 items-center">
-                <span className="font-semibold text-brand-dark w-1/2">{label}</span>
-                <select
-                  name="locale"
-                  value={form.locale}
-                  onChange={handleChange}
-                  className="w-1/2 border border-brand-gray-light rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-indigo text-right"
-                >
-                  <option value="">Select Locale</option>
-                  <option value="en-US">English (United States)</option>
-                  <option value="en-GB">English (United Kingdom)</option>
-                  <option value="fr-FR">French (France)</option>
-                  <option value="es-ES">Spanish (Spain)</option>
-                  <option value="de-DE">German (Germany)</option>
-                  <option value="it-IT">Italian (Italy)</option>
-                  <option value="pt-PT">Portuguese (Portugal)</option>
-                  <option value="zh-CN">Chinese (Simplified)</option>
-                  <option value="ja-JP">Japanese</option>
-                  <option value="ko-KR">Korean</option>
-                </select>
-              </li>
-            ) : (
-              <li key={key} className="flex justify-between border-b border-brand-gray py-2 items-center">
-                <span className="font-semibold text-brand-dark w-1/2">{label}</span>
-                <input
-                  name={key}
-                  type={key === 'birthdate' ? 'date' : 'text'}
-                  value={form[key as keyof typeof form] || ''}
-                  onChange={handleChange}
-                  className="w-1/2 border border-brand-gray-light rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-indigo text-right"
-                />
-              </li>
-            )
-          )
+            <li
+              key={key}
+              className="flex justify-between border-b border-brand-gray py-2 items-center"
+            >
+              <span className="font-semibold text-brand-dark w-1/2">
+                {label}
+              </span>
+              <input
+                name={key}
+                type={key === 'birthdate' ? 'date' : 'text'}
+                value={form[key as keyof typeof form] || ''}
+                onChange={handleChange}
+                className="w-1/2 border border-brand-gray-light rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-indigo text-right"
+              />
+            </li>
+          ),
         )}
       </ul>
       {editMode && (

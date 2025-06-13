@@ -1,4 +1,5 @@
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { getCurrentUser } from './cognito'
 
 const poolData = {
   UserPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
@@ -8,7 +9,7 @@ const poolData = {
 const userPool = new CognitoUserPool(poolData)
 
 export function getCurrentUserSession(): Promise<any> {
-  const user = userPool.getCurrentUser()
+  const user = getCurrentUser()
   if (!user) return Promise.resolve(null)
 
   return new Promise((resolve, reject) => {

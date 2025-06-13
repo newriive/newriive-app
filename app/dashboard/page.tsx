@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CognitoUserSession } from 'amazon-cognito-identity-js'
-import { getCurrentUserSession } from '@lib/session'
+import { getCurrentUserSession } from '@lib/auth'
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
@@ -32,7 +32,9 @@ export default function DashboardPage() {
 
   return (
     <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body">
-      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">Dashboard</h1>
+      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">
+        Dashboard
+      </h1>
       <p className="mb-4">{message}</p>
     </main>
   )

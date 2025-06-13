@@ -1,4 +1,3 @@
-
 module.exports = {
   content: [
     './app/**/*.{ts,tsx}',
@@ -9,11 +8,11 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          indigo: '#3B3B98',      // primary brand
-          gold: '#F9A825',        // highlight
-          teal: '#009688',        // accent
-          gray: '#F5F5F5',        // bg light
-          dark: '#4B5563',        // text dark
+          indigo: '#3B3B98', // primary brand
+          gold: '#F9A825', // highlight
+          teal: '#009688', // accent
+          gray: '#F5F5F5', // bg light
+          dark: '#4B5563', // text dark
           white: '#FFFFFF',
         },
       },

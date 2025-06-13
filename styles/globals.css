@@ -9,7 +9,11 @@
     @apply font-body bg-brand-white text-brand-dark;
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     @apply font-heading text-brand-indigo;
   }
 }
