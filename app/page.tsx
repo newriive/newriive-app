@@ -7,7 +7,8 @@ export default function Home() {
         Welcome to Newriive
       </h1>
       <p className="text-lg md:text-xl text-brand-text-dark mb-10">
-        A modern toolkit for immigrants — track your journey, access resources, and feel at home faster.
+        A modern toolkit for immigrants — track your journey, access resources,
+        and feel at home faster.
       </p>
       <div className="flex justify-center gap-4">
         <a

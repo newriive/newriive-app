@@ -8,13 +8,13 @@ This repo contains the dynamic app: user authentication, dashboards, and future 
 
 ## 🚀 Tech Stack
 
-| Layer        | Technology                       |
-|--------------|-----------------------------------|
-| Frontend     | [Next.js (App Router)](https://nextjs.org/docs/app) + Tailwind CSS |
-| Auth         | [Amazon Cognito](https://aws.amazon.com/cognito/) |
-| Backend API  | AWS Lambda + API Gateway (via Next.js routes or serverless) |
-| Database     | [DynamoDB](https://aws.amazon.com/dynamodb/) |
-| Deployment   | S3 + CloudFront or AppRunner      |
+| Layer       | Technology                                                         |
+| ----------- | ------------------------------------------------------------------ |
+| Frontend    | [Next.js (App Router)](https://nextjs.org/docs/app) + Tailwind CSS |
+| Auth        | [Amazon Cognito](https://aws.amazon.com/cognito/)                  |
+| Backend API | AWS Lambda + API Gateway (via Next.js routes or serverless)        |
+| Database    | [DynamoDB](https://aws.amazon.com/dynamodb/)                       |
+| Deployment  | S3 + CloudFront or AppRunner                                       |
 
 ---
 
@@ -79,10 +79,10 @@ The initial UI is a simple welcome page styled with Tailwind CSS. Feature compon
 
 ## 🧱 Infrastructure Setup
 
-| Service     | Setup Guide |
-|-------------|-------------|
-| Cognito     | [AWS Docs](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) |
-| DynamoDB    | [AWS Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html) |
+| Service         | Setup Guide                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| Cognito         | [AWS Docs](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)        |
+| DynamoDB        | [AWS Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html)              |
 | S3 + CloudFront | [Static Site Hosting](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html) |
 
 ---
@@ -102,6 +102,7 @@ The initial UI is a simple welcome page styled with Tailwind CSS. Feature compon
 ## Continuous Integration
 
 This project uses GitHub Actions for CI. There are two workflows:
+
 - **build-on-pr.yml**: Runs build and lint on every pull request.
 - **build-on-main.yml**: Runs build and lint on every merge/push to `main` and uploads build artifacts.
 

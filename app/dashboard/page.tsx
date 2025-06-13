@@ -32,7 +32,9 @@ export default function DashboardPage() {
 
   return (
     <main className="bg-brand-white rounded-xl shadow-md p-8 mt-10 font-body">
-      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">Dashboard</h1>
+      <h1 className="text-2xl font-heading font-bold text-brand-indigo mb-4">
+        Dashboard
+      </h1>
       <p className="mb-4">{message}</p>
     </main>
   )
