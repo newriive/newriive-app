@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { signUpUser } from '@lib/cognito'
+import { signUpUser } from '@lib/auth'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('')

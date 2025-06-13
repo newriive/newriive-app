@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { forgotPassword, confirmForgotPassword } from '@lib/cognito'
+import { forgotPassword, confirmForgotPassword } from '@lib/auth'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')

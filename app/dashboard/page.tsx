@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CognitoUserSession } from 'amazon-cognito-identity-js'
-import { getCurrentUserSession } from '@lib/session'
+import { getCurrentUserSession } from '@lib/auth'
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true)

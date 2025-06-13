@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { signInUser } from '@lib/cognito'
+import { signInUser } from '@lib/auth'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {

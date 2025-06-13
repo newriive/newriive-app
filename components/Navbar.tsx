@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { getCurrentUserSession } from '@lib/session'
+import { getCurrentUserSession } from '@lib/auth'
 import LogoutButton from './LogoutButton'
 import LoginPage from '../app/login/page'
 import SignupPage from '../app/signup/page'

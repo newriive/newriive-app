@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { confirmUserSignup } from '@lib/cognito'
+import { confirmUserSignup } from '@lib/auth'
 
 export default function ConfirmPage() {
   const [email, setEmail] = useState('')
