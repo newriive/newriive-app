@@ -1,86 +1,118 @@
-# newriive-app
+# 🗺️ newriive-app
 
-A modern web application built with Next.js, Tailwind CSS, AWS Cognito, and DynamoDB.
+**Newriive** is a full-stack web application designed to support immigrants through personalized tools and resources — built entirely on AWS.
 
-## Project Structure
-
-```plaintext
-.
-├── app/                # Next.js app directory
-├── components/         # Reusable React components
-├── lib/                # Utility libraries (e.g., DynamoDB)
-├── pages/              # Next.js pages
-├── public/             # Static assets
-├── styles/             # Global styles (Tailwind, etc.)
-├── .github/            # GitHub workflows and templates
-├── .env.example        # Example environment variables
-├── package.json        # Project metadata and scripts
-└── README.md           # Project documentation
-```
-
-## Tech Stack
-
-- [Next.js](https://nextjs.org/)
-- [React](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [AWS Cognito](https://aws.amazon.com/cognito/)
-- [AWS DynamoDB](https://aws.amazon.com/dynamodb/)
-- [TypeScript](https://www.typescriptlang.org/)
-
-## Getting Started
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/your-org/your-repo.git
-   cd your-repo
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Copy the example environment file and update values**
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-4. **Run the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Environment Variables
-
-- Copy `.env.example` to `.env.local` and fill in the required values for AWS and other integrations.
-
-## Testing
-
-- Run all tests with:
-
-  ```bash
-  npm test
-  ```
-
-## Continuous Integration
-
-- Pull requests and merges to `main` are automatically built and linted via GitHub Actions workflows in `.github/workflows/`.
-
-## Contributing
-
-- See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
-- For AI-assisted coding, see [`COPILOT_INSTRUCTIONS.md`](COPILOT_INSTRUCTIONS.md).
-
-## License
-
-This project is licensed under the MIT License.
+This repo contains the dynamic app: user authentication, dashboards, and future service modules.
 
 ---
 
-Happy coding!
+## 🚀 Tech Stack
+
+| Layer       | Technology                                                         |
+| ----------- | ------------------------------------------------------------------ |
+| Frontend    | [Next.js (App Router)](https://nextjs.org/docs/app) + Tailwind CSS |
+| Auth        | [Amazon Cognito](https://aws.amazon.com/cognito/)                  |
+| Backend API | AWS Lambda + API Gateway (via Next.js routes or serverless)        |
+| Database    | [DynamoDB](https://aws.amazon.com/dynamodb/)                       |
+| Deployment  | S3 + CloudFront or AppRunner                                       |
+
+---
+
+## 📁 Project Structure
+
+```bash
+newriive-app/
+├── app/                  # App Router pages and routes
+# ├── components/           # UI components (to be added as features are built)
+├── lib/                  # AWS SDK logic (auth, db)
+├── styles/               # Tailwind CSS styles
+├── public/               # Static assets (favicon, OG)
+├── .github/workflows/    # CI/CD (optional)
+├── next.config.js
+├── tailwind.config.js
+├── tsconfig.json
+└── README.md
+```
+
+> **Note:** Tailwind CSS is pre-installed and configured. Global styles are imported in `app/layout.tsx` via `import '../styles/globals.css'`.
+
+---
+
+## 🧪 Setup Instructions
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/newriive/newriive-app.git
+cd newriive-app
+npm install
+```
+
+### 2. Environment Variables
+
+Create a `.env.local` file:
+
+```bash
+cp .env.local.example .env.local
+```
+
+Fill in with:
+
+```env
+COGNITO_USER_POOL_ID=...
+COGNITO_CLIENT_ID=...
+DYNAMODB_TABLE_USERS=Users
+DYNAMODB_TABLE_CHECKLIST=Checklist
+```
+
+---
+
+## 🛠 Local Development
+
+```bash
+npm run dev
+```
+
+The initial UI is a simple welcome page styled with Tailwind CSS. Feature components (auth, dashboard, checklist, etc.) will be added as development progresses.
+
+---
+
+## 🧱 Infrastructure Setup
+
+| Service         | Setup Guide                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| Cognito         | [AWS Docs](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)        |
+| DynamoDB        | [AWS Docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html)              |
+| S3 + CloudFront | [Static Site Hosting](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html) |
+
+---
+
+## 📌 Roadmap
+
+- [x] Static site via S3 (see [newriive-site](https://github.com/newriive/newriive-site))
+- [ ] Auth via Cognito
+- [ ] Checklist tracker (DynamoDB)
+- [ ] User dashboard UI
+- [ ] Waitlist → onboard flow
+- [ ] Real-time feedback collection
+- [ ] Admin dashboard
+
+---
+
+## Continuous Integration
+
+This project uses GitHub Actions for CI. There are two workflows:
+
+- **build-on-pr.yml**: Runs build and lint on every pull request.
+- **build-on-main.yml**: Runs build and lint on every merge/push to `main` and uploads build artifacts.
+
+Both use a [reusable workflow](.github/workflows/build-reusable.yml) for consistency.
+
+[![Build on PR](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-pr.yml)
+[![Build on Main](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml/badge.svg)](https://github.com/newriive/newriive-app/actions/workflows/build-on-main.yml)
+
+---
+
+## 📄 License
+
+MIT — see [LICENSE](./LICENSE)
