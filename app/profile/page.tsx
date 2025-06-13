@@ -3,6 +3,7 @@
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import { useEffect, useState } from 'react'
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { getCurrentUser } from '@lib/auth/cognito'
 
 const poolData = {
   UserPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
@@ -27,7 +28,7 @@ export default function ProfilePage() {
   const [saveError, setSaveError] = useState('')
 
   useEffect(() => {
-    const user = userPool.getCurrentUser()
+    const user = getCurrentUser()
     if (!user) {
       setError('Not logged in')
       setLoading(false)
@@ -125,7 +126,7 @@ export default function ProfilePage() {
   const handleSave = async () => {
     setSaving(true)
     setSaveError('')
-    const user = userPool.getCurrentUser()
+    const user = getCurrentUser()
     if (!user) {
       setSaveError('Not logged in')
       setSaving(false)

@@ -135,3 +135,5 @@ export function confirmForgotPassword(
     })
   })
 }
+
+export const getCurrentUser = () => userPool.getCurrentUser()
